@@ -1,0 +1,84 @@
+=== SAME PLANNER: INITIAL STRATEGY AND THREE RUNTIME SWITCHES ===
+Fastest -> R2 | time=24 min | cost=5000.00 KZT | distance=15.0 km | CO2=5.0 kg | score=24.0000
+  Reason: Lowest final time: 22 + traffic 2 = 24 min
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+Cheapest -> R3 | time=50 min | cost=1500.00 KZT | distance=8.0 km | CO2=2.0 kg | score=1500.0000
+  Reason: Lowest total cost: base 700.0 + distance 8.0 * 100 + priority 0.0 + fees 0.0 = 1500.0 KZT
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+Eco -> R4 | time=43 min | cost=2600.00 KZT | distance=10.0 km | CO2=0.5 kg | score=2.4000
+  Reason: Lowest eco score: 0.5 * 0.8 + 10.0 * 0.2 = 2.4
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+Balanced -> R6 | time=32 min | cost=2900.00 KZT | distance=11.0 km | CO2=1.5 kg | score=0.3431
+  Reason: Lowest weighted min-max score: 0.3431; weights time=0.40 cost=0.30 distance=0.10 emission=0.20; normalized over feasible routes
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+=== COMPARISON: SAME REQUEST, ALL STRATEGIES ===
+Fastest -> R2 | time=24 min | cost=5000.00 KZT | distance=15.0 km | CO2=5.0 kg | score=24.0000
+  Reason: Lowest final time: 22 + traffic 2 = 24 min
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+Cheapest -> R3 | time=50 min | cost=1500.00 KZT | distance=8.0 km | CO2=2.0 kg | score=1500.0000
+  Reason: Lowest total cost: base 700.0 + distance 8.0 * 100 + priority 0.0 + fees 0.0 = 1500.0 KZT
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+Eco -> R4 | time=43 min | cost=2600.00 KZT | distance=10.0 km | CO2=0.5 kg | score=2.4000
+  Reason: Lowest eco score: 0.5 * 0.8 + 10.0 * 0.2 = 2.4
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+Balanced -> R6 | time=32 min | cost=2900.00 KZT | distance=11.0 km | CO2=1.5 kg | score=0.3431
+  Reason: Lowest weighted min-max score: 0.3431; weights time=0.40 cost=0.30 distance=0.10 emission=0.20; normalized over feasible routes
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+Distance first -> R5 | time=43 min | cost=2600.00 KZT | distance=6.0 km | CO2=3.0 kg | score=6.0000
+  Reason: Shortest feasible distance: 6.0 km
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+=== AUTOMATIC SELECTION AND DIFFERENT REQUESTS ===
+DeliveryRequest[priority=URGENT, maxBudget=6000.0, maxDeliveryMinutes=30, ecoPreferred=false]
+Fastest -> R2 | time=24 min | cost=5500.00 KZT | distance=15.0 km | CO2=5.0 kg | score=24.0000
+  Reason: Lowest final time: 22 + traffic 2 = 24 min
+  Rejected R3: Delivery deadline exceeded
+  Rejected R4: Delivery deadline exceeded
+  Rejected R5: Delivery deadline exceeded
+  Rejected R6: Delivery deadline exceeded
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+DeliveryRequest[priority=ECONOMY, maxBudget=2000.0, maxDeliveryMinutes=60, ecoPreferred=false]
+Cheapest -> R3 | time=50 min | cost=1500.00 KZT | distance=8.0 km | CO2=2.0 kg | score=1500.0000
+  Reason: Lowest total cost: base 700.0 + distance 8.0 * 100 + priority 0.0 + fees 0.0 = 1500.0 KZT
+  Rejected R1: Budget exceeded
+  Rejected R2: Budget exceeded
+  Rejected R4: Budget exceeded
+  Rejected R5: Budget exceeded
+  Rejected R6: Budget exceeded
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+DeliveryRequest[priority=ECO, maxBudget=6000.0, maxDeliveryMinutes=60, ecoPreferred=true]
+Eco -> R4 | time=43 min | cost=2600.00 KZT | distance=10.0 km | CO2=0.5 kg | score=2.4000
+  Reason: Lowest eco score: 0.5 * 0.8 + 10.0 * 0.2 = 2.4
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+DeliveryRequest[priority=STANDARD, maxBudget=6000.0, maxDeliveryMinutes=60, ecoPreferred=false]
+Balanced -> R6 | time=32 min | cost=2900.00 KZT | distance=11.0 km | CO2=1.5 kg | score=0.3431
+  Reason: Lowest weighted min-max score: 0.3431; weights time=0.40 cost=0.30 distance=0.10 emission=0.20; normalized over feasible routes
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+DeliveryRequest[priority=STANDARD, maxBudget=6000.0, maxDeliveryMinutes=60, ecoPreferred=true]
+Eco -> R4 | time=43 min | cost=2600.00 KZT | distance=10.0 km | CO2=0.5 kg | score=2.4000
+  Reason: Lowest eco score: 0.5 * 0.8 + 10.0 * 0.2 = 2.4
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+=== SAME FASTEST STRATEGY WITH LOWER BUDGET ===
+Fastest -> R6 | time=32 min | cost=2900.00 KZT | distance=11.0 km | CO2=1.5 kg | score=32.0000
+  Reason: Lowest final time: 28 + traffic 4 = 32 min
+  Rejected R1: Budget exceeded
+  Rejected R2: Budget exceeded
+  Rejected R7: Route unavailable
+  Rejected R8: Delivery deadline exceeded
+=== THREE HANDLED FAILURE CASES ===
+No suitable route: Route list is empty
+No suitable route: R1: Budget exceeded, Delivery deadline exceeded; R2: Budget exceeded, Delivery deadline exceeded; R3: Budget exceeded, Delivery deadline exceeded; R4: Budget exceeded, Delivery deadline exceeded; R5: Budget exceeded, Delivery deadline exceeded; R6: Budget exceeded, Delivery deadline exceeded; R7: Route unavailable, Budget exceeded, Delivery deadline exceeded; R8: Budget exceeded, Delivery deadline exceeded
+Weights must sum to 1.0
