@@ -6,7 +6,7 @@ import java.util.Locale;
 public class Main {
     public static List<RouteStrategy> allStrategies() {
         return List.of(new FastestRouteStrategy(), new CheapestRouteStrategy(),
-                new EcoFriendlyRouteStrategy(), new BalancedRouteStrategy(0.4, 0.3, 0.1, 0.2));
+                new EcoFriendlyRouteStrategy(), new BalancedRouteStrategy(0.4, 0.3, 0.1, 0.2), new DistanceFirstStrategy());
     }
     private static void print(RouteDecision decision, DeliveryRequest request) {
         Route route = decision.route();
